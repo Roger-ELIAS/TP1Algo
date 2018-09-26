@@ -4,28 +4,30 @@ import java.util.Scanner;
 public class Main {
 
     public static void main (String[] args){
+
         try {
             int nb;
             int source;
             int dest;
             Scanner fichier = new Scanner(new File("formula1.txt"));
-            //while (sc.hasNextLong()) {
-            //    long aLong = sc.nextLong();
-            //}
             nb = fichier.nextInt();
             System.out.println(nb);
-            Graph<Integer> G = new Graph<Integer>(nb*2);
+            Graph<String> G = new Graph<String>(nb*2);
             while (fichier.hasNextInt()) {
-                source = fichier.nextInt();
+                source = fichier.nextInt(); //(1,2,....,n,-n,-n+1,....,-1)
                 if(source<0)
-                    source = source + nb*2;
+                    source =  nb*2 + source;
+                else
+                    --source;
                 dest = fichier.nextInt();
                 if(dest<0)
-                    dest = dest + nb*2;
-                G.addArc(source,dest,0);
-                System.out.println(source + " | "+ dest);
+                    dest = nb*2 + dest ;
+                else
+                    --dest;
+                //System.out.println(source+"u"+dest+" == ("+negation(source,nb)+"=>"+dest+")^("+negation(dest,nb)+"=>"+source+")");
+                G.addArc(negation(source,nb),dest,(source)+"u"+(dest));
+                G.addArc(negation(dest,nb),source,(source)+"u"+(dest));
             }
-
             System.out.println(G.toString());
 
         } catch (FileNotFoundException e) {
@@ -36,4 +38,11 @@ public class Main {
 
 
     }
+
+    private static int negation(int source, int n) {
+        //for( int i=0;i<2*nb;++i)
+        //    System.out.println(i+":"+negation(i,nb));
+        return n*2 - source -1;
+    }
+
 }

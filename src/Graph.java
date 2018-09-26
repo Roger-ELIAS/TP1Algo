@@ -49,6 +49,7 @@ public class Graph<Label> {
 
     }
 
+
     public interface ArcFunction<Label,K> {
         public K apply(int source, int dest, Label label, K accu);
     }
