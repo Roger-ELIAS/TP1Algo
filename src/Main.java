@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -11,7 +12,7 @@ public class Main {
             int dest;
             Scanner fichier = new Scanner(new File("formula1.txt"));
             nb = fichier.nextInt();
-            System.out.println(nb);
+            //System.out.println(nb);
             Graph<String> G = new Graph<String>(nb*2);
             while (fichier.hasNextInt()) {
                 source = fichier.nextInt(); //(1,2,....,n,-n,-n+1,....,-1)
@@ -28,19 +29,24 @@ public class Main {
                 G.addArc(negation(source,nb),dest,(source)+"u"+(dest));
                 G.addArc(negation(dest,nb),source,(source)+"u"+(dest));
             }
-            System.out.println(G.toString());
-            System.out.println(G.GraphT().toString());
-
+            //System.out.println(G.toString());
+            
+            ParcoursEnProfondeur parc = new ParcoursEnProfondeur(G);
+            Graph Gtranspose = G.GraphT();
+            //System.out.println(Gtranspose.toString());
+            ParcoursEnProfondeur parc2 = new ParcoursEnProfondeur(Gtranspose,parc.getDates());
+            System.out.println(G.Verif(parc2.getComposantesConnexes()));
+            
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
+
+    
     private static int negation(int source, int n) {
         //for( int i=0;i<2*nb;++i)
         //    System.out.println(i+":"+negation(i,nb));
