@@ -105,4 +105,24 @@ public class Graph<Label> {
         }
         return GraphT;
     }
+
+    public boolean Verif(ArrayList<ArrayList<Integer>> i){
+        for (ArrayList test : i ){
+            for(int j = 0 ; j<test.size(); j++){
+                int jj = negation(j,cardinal/2);
+                for(int k=0;k<test.size();k++)
+                {
+                    if(k==jj)
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public int negation(int source, int n) {
+        //for( int i=0;i<2*nb;++i)
+        //    System.out.println(i+":"+negation(i,nb));
+        return n*2 - source -1;
+    }
 }

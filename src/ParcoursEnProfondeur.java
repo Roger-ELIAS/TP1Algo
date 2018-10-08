@@ -5,7 +5,7 @@ public class ParcoursEnProfondeur {
     private int[] dates;
     private int[] pred;
     private boolean[] couleurs;
-    private int date=1;
+    private int date=0;
     private Graph G;
     public ArrayList<ArrayList<Integer>> composantesConnexes = new ArrayList<ArrayList<Integer>>();
     
@@ -23,14 +23,6 @@ public class ParcoursEnProfondeur {
             if (couleurs[i] == false)
                 visiter(i);
         }
-
-        
-        /*test
-        for(int i=0;i<cardinal;++i) {
-        	System.out.println(i + "|dates "+dates[i]+"|pred "+pred[i]+"|couleur "+couleurs[i]);
-        }
-        System.out.println(date);
-    	*/
     }
     
     public ParcoursEnProfondeur(Graph G,int[] datesfin1){
@@ -106,15 +98,15 @@ public class ParcoursEnProfondeur {
     public ArrayList<ArrayList<Integer>> getComposantesConnexes(){
     	return composantesConnexes;
     }
-    
+
     private void visiter(int i) {
         ++date;
         couleurs[i] = true;
         for(int ii=0; ii< G.getVoisins(i).size();++ii)
-        	if (couleurs[(int) G.getVoisins(i).get(ii)]==false){
-        		visiter((int) G.getVoisins(i).get(ii));
-        		pred[(int) G.getVoisins(i).get(ii)]=i;
-        	}
+            if (couleurs[(int) G.getVoisins(i).get(ii)]==false){
+                visiter((int) G.getVoisins(i).get(ii));
+                pred[(int) G.getVoisins(i).get(ii)]=i;
+            }
         dates[i]=date;
         ++date;
     }

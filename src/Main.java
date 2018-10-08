@@ -30,13 +30,13 @@ public class Main {
                 G.addArc(negation(dest,nb),source,(source)+"u"+(dest));
             }
             //System.out.println(G.toString());
-            
+
             ParcoursEnProfondeur parc = new ParcoursEnProfondeur(G);
             Graph Gtranspose = G.GraphT();
             //System.out.println(Gtranspose.toString());
             ParcoursEnProfondeur parc2 = new ParcoursEnProfondeur(Gtranspose,parc.getDates());
             System.out.println(G.Verif(parc2.getComposantesConnexes()));
-            
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class Main {
     }
 
 
-    
+
     private static int negation(int source, int n) {
         //for( int i=0;i<2*nb;++i)
         //    System.out.println(i+":"+negation(i,nb));
