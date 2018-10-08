@@ -29,6 +29,7 @@ public class Main {
                 G.addArc(negation(dest,nb),source,(source)+"u"+(dest));
             }
             System.out.println(G.toString());
+           // System.out.println(G.getIncidency(7));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Graph<Label> {
 
@@ -13,6 +14,10 @@ public class Graph<Label> {
             this.source = from;
             this.destination = to;
             this.label = label;
+        }
+
+        public int getDestination() {
+            return destination;
         }
     }
 
@@ -47,6 +52,14 @@ public class Graph<Label> {
         }
         return result;
 
+    }
+
+    public ArrayList getVoisins(int source) {
+        ArrayList  result = new ArrayList();
+        for (Edge edge : incidency.get(source)){
+            result.add(edge.getDestination());
+        }
+        return result;
     }
 
 

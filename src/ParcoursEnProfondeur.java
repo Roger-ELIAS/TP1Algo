@@ -5,6 +5,8 @@ public class ParcoursEnProfondeur {
     private boolean[] couleurs;
     private int date=0;
     private Graph G;
+
+
     public ParcoursEnProfondeur(Graph G){
         this.G=G;
         int cardinal = G.order();
