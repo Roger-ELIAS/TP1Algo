@@ -19,6 +19,14 @@ public class Graph<Label> {
         public int getDestination() {
             return destination;
         }
+
+        public int getSource() {
+            return source;
+        }
+
+        public Label getLabel() {
+            return label;
+        }
     }
 
     private int cardinal;
@@ -54,8 +62,8 @@ public class Graph<Label> {
 
     }
 
-    public ArrayList getVoisins(int source) {
-        ArrayList  result = new ArrayList();
+    public ArrayList<Integer> getVoisins(int source) {
+        ArrayList<Integer> result = new ArrayList();
         for (Edge edge : incidency.get(source)){
             result.add(edge.getDestination());
         }
@@ -88,6 +96,13 @@ public class Graph<Label> {
         }
     }
 
-
-
+    public Graph GraphT() {
+        Graph GraphT = new Graph(this.cardinal);
+        for (int i = 0;i<cardinal;i++) {
+            for (Edge edge : this.incidency.get(i)){
+                GraphT.addArc(edge.getDestination(),edge.getSource(),edge.getLabel());
+            }
+        }
+        return GraphT;
+    }
 }
